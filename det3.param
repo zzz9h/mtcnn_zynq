@@ -1,0 +1,22 @@
+7767517
+20 22
+Input            data             0 1 data 0=48 1=48 2=3
+Convolution      ONetnSequentialnprenlayernnConv2dn0n22 1 1 data ONetnSequentialnprenlayernnConv2dn0n22 0=32 1=3 2=1 3=1 4=0 5=1 6=864
+PReLU            ONetnSequentialnprenlayernnPReLUn1n23 1 1 ONetnSequentialnprenlayernnConv2dn0n22 ONetnSequentialnprenlayernnPReLUn1n23 0=1
+Pooling          ONetnSequentialnprenlayernnMaxPool2dn2n24 1 1 ONetnSequentialnprenlayernnPReLUn1n23 ONetnSequentialnprenlayernnMaxPool2dn2n24 0=0 1=3 2=2 3=0 4=0
+Convolution      ONetnSequentialnprenlayernnConv2dn3n26 1 1 ONetnSequentialnprenlayernnMaxPool2dn2n24 ONetnSequentialnprenlayernnConv2dn3n26 0=64 1=3 2=1 3=1 4=0 5=1 6=18432
+PReLU            ONetnSequentialnprenlayernnPReLUn4n27 1 1 ONetnSequentialnprenlayernnConv2dn3n26 ONetnSequentialnprenlayernnPReLUn4n27 0=1
+Pooling          ONetnSequentialnprenlayernnMaxPool2dn5n28 1 1 ONetnSequentialnprenlayernnPReLUn4n27 ONetnSequentialnprenlayernnMaxPool2dn5n28 0=0 1=3 2=2 3=0 4=0
+Convolution      ONetnSequentialnprenlayernnConv2dn6n30 1 1 ONetnSequentialnprenlayernnMaxPool2dn5n28 ONetnSequentialnprenlayernnConv2dn6n30 0=64 1=3 2=1 3=1 4=0 5=1 6=36864
+PReLU            ONetnSequentialnprenlayernnPReLUn7n31 1 1 ONetnSequentialnprenlayernnConv2dn6n30 ONetnSequentialnprenlayernnPReLUn7n31 0=1
+Pooling          ONetnSequentialnprenlayernnMaxPool2dn8n32 1 1 ONetnSequentialnprenlayernnPReLUn7n31 ONetnSequentialnprenlayernnMaxPool2dn8n32 0=0 1=2 2=2 3=0 4=0
+Convolution      ONetnSequentialnprenlayernnConv2dn9n34 1 1 ONetnSequentialnprenlayernnMaxPool2dn8n32 ONetnSequentialnprenlayernnConv2dn9n34 0=128 1=2 2=1 3=1 4=0 5=1 6=32768
+PReLU            ONetnSequentialnprenlayernnPReLUn10n35 1 1 ONetnSequentialnprenlayernnConv2dn9n34 ONetnSequentialnprenlayernnPReLUn10n35 0=1
+Flatten          ONet36           1 1 ONetnSequentialnprenlayernnPReLUn10n35 ONet36
+InnerProduct     ONetnLinearnconv5n37 1 1 ONet36 ONetnLinearnconv5n37 0=256 1=1 2=294912
+PReLU            ONetnPReLUnprelu5n38 1 1 ONetnLinearnconv5n37 ONetnPReLUnprelu5n38 0=1
+Split            splitncnn_0      1 3 ONetnPReLUnprelu5n38 ONetnPReLUnprelu5n38_splitncnn_0 ONetnPReLUnprelu5n38_splitncnn_1 ONetnPReLUnprelu5n38_splitncnn_2
+InnerProduct     ONetnLinearnconv6n1n39 1 1 ONetnPReLUnprelu5n38_splitncnn_2 ONetnLinearnconv6n1n39 0=1 1=1 2=256
+InnerProduct     ONetnLinearnconv6n2n41 1 1 ONetnPReLUnprelu5n38_splitncnn_1 ONetnLinearnconv6n2n41 0=4 1=1 2=1024
+InnerProduct     ONetnLinearnconv6n3n42 1 1 ONetnPReLUnprelu5n38_splitncnn_0 ONetnLinearnconv6n3n42 0=10 1=1 2=2560
+Sigmoid          ONet40           1 1 ONetnLinearnconv6n1n39 ONet40

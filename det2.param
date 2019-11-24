@@ -1,0 +1,18 @@
+7767517
+16 17
+Input            data             0 1 data 0=24 1=24 2=3
+Convolution      RNetnSequentialnprenlayernnConv2dn0n19 1 1 data RNetnSequentialnprenlayernnConv2dn0n19 0=28 1=3 2=1 3=1 4=0 5=1 6=756
+PReLU            RNetnSequentialnprenlayernnPReLUn1n20 1 1 RNetnSequentialnprenlayernnConv2dn0n19 RNetnSequentialnprenlayernnPReLUn1n20 0=1
+Pooling          RNetnSequentialnprenlayernnMaxPool2dn2n21 1 1 RNetnSequentialnprenlayernnPReLUn1n20 RNetnSequentialnprenlayernnMaxPool2dn2n21 0=0 1=3 2=2 3=0 4=0
+Convolution      RNetnSequentialnprenlayernnConv2dn3n23 1 1 RNetnSequentialnprenlayernnMaxPool2dn2n21 RNetnSequentialnprenlayernnConv2dn3n23 0=48 1=3 2=1 3=1 4=0 5=1 6=12096
+PReLU            RNetnSequentialnprenlayernnPReLUn4n24 1 1 RNetnSequentialnprenlayernnConv2dn3n23 RNetnSequentialnprenlayernnPReLUn4n24 0=1
+Pooling          RNetnSequentialnprenlayernnMaxPool2dn5n25 1 1 RNetnSequentialnprenlayernnPReLUn4n24 RNetnSequentialnprenlayernnMaxPool2dn5n25 0=0 1=3 2=2 3=0 4=0
+Convolution      RNetnSequentialnprenlayernnConv2dn6n27 1 1 RNetnSequentialnprenlayernnMaxPool2dn5n25 RNetnSequentialnprenlayernnConv2dn6n27 0=64 1=2 2=1 3=1 4=0 5=1 6=12288
+PReLU            RNetnSequentialnprenlayernnPReLUn7n28 1 1 RNetnSequentialnprenlayernnConv2dn6n27 RNetnSequentialnprenlayernnPReLUn7n28 0=1
+Flatten          RNet29           1 1 RNetnSequentialnprenlayernnPReLUn7n28 RNet29
+InnerProduct     RNetnLinearnconv4n30 1 1 RNet29 RNetnLinearnconv4n30 0=128 1=1 2=73728
+PReLU            RNetnPReLUnprelu4n31 1 1 RNetnLinearnconv4n30 RNetnPReLUnprelu4n31 0=1
+Split            splitncnn_0      1 2 RNetnPReLUnprelu4n31 RNetnPReLUnprelu4n31_splitncnn_0 RNetnPReLUnprelu4n31_splitncnn_1
+InnerProduct     RNetnLinearnconv5n1n32 1 1 RNetnPReLUnprelu4n31_splitncnn_1 RNetnLinearnconv5n1n32 0=1 1=1 2=128
+InnerProduct     RNetnLinearnconv5n2n34 1 1 RNetnPReLUnprelu4n31_splitncnn_0 RNetnLinearnconv5n2n34 0=4 1=1 2=512
+Sigmoid          RNet33           1 1 RNetnLinearnconv5n1n32 RNet33
